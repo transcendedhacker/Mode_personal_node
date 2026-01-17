@@ -1,0 +1,80 @@
+{
+  "structure": {
+    "block_order": [
+      "character",
+      "scene",
+      "emotion",
+      "wardrobe",
+      "photography",
+      "technical"
+    ],
+    "separator": ", ",
+    "break_positions": [4, 6]
+  },
+  
+  "weights": {
+    "character": 1.1,
+    "emotion": 1.2,
+    "photography": 1.3,
+    "scene": 1.0,
+    "wardrobe": 1.0,
+    "technical": 1.0
+  },
+  
+  "models": {
+    "sdxl": {
+      "enable_weights": true,
+      "weight_multiplier": 1.0,
+      "weight_format": "({text}:{weight})"
+    },
+    "flux": {
+      "enable_weights": true,
+      "weight_multiplier": 0.85,
+      "weight_format": "({text}:{weight})"
+    }
+  },
+  
+  "dropdown_hierarchy": {
+    "library": {
+      "type": "library_selector",
+      "label": "Library",
+      "source": "libraries"
+    },
+    "character": {
+      "type": "block_selector",
+      "label": "Character",
+      "block": "character",
+      "depends_on": ["library"]
+    },
+    "scene": {
+      "type": "block_selector",
+      "label": "Scene",
+      "block": "scene",
+      "depends_on": ["library"]
+    },
+    "emotion": {
+      "type": "block_selector",
+      "label": "Emotion",
+      "block": "emotion",
+      "depends_on": ["library"]
+    },
+    "wardrobe": {
+      "type": "block_selector",
+      "label": "Wardrobe",
+      "block": "wardrobe",
+      "depends_on": ["library"]
+    },
+    "photography": {
+      "type": "block_selector",
+      "label": "Photography",
+      "block": "photography",
+      "depends_on": ["library"]
+    },
+    "technical": {
+      "type": "block_selector",
+      "label": "Technical",
+      "block": "technical",
+      "depends_on": ["library"]
+    }
+  }
+}

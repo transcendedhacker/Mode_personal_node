@@ -2,28 +2,44 @@
   "assembly": {
     "order": [
       "subject",
-      "hair",
-      "hairstyle",
+      "age",
+      "hair_color",
+      "hair_style",
+      "hair_ornament",
       "outfit",
+      "outfit_detail",
       "pose",
       "mood",
-      "angle",
+      "location",
+      "location_detail",
       "atmosphere",
+      "lighting",
+      "angle",
+      "frame",
+      "filter",
       "technical"
     ],
     "separator": ", ",
-    "break_after": [5, 7]
+    "break_after": [8, 12, 15]
   },
   
   "weights": {
     "subject": 1.0,
-    "hair": 1.0,
-    "hairstyle": 1.0,
+    "age": 1.0,
+    "hair_color": 1.0,
+    "hair_style": 1.0,
+    "hair_ornament": 1.0,
     "outfit": 1.0,
+    "outfit_detail": 1.0,
     "pose": 1.2,
     "mood": 1.2,
-    "angle": 1.0,
+    "location": 1.0,
+    "location_detail": 1.0,
     "atmosphere": 1.3,
+    "lighting": 1.3,
+    "angle": 1.0,
+    "frame": 1.0,
+    "filter": 1.1,
     "technical": 1.0
   },
   

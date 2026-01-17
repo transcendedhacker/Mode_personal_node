@@ -25,22 +25,13 @@ class PromptNode:
         default_lib = libs[0]
         order = c.schema["assembly"]["order"]
         
-        inputs = {
-            "required": {
-                "library": (libs,),
-                "model": (["sdxl", "flux"], {"default": "sdxl"}),
-            }
-        }
+        inputs = {"required": {"library": (libs,), "model": (["sdxl", "flux"], {"default": "sdxl"})}}
         
         for block in order:
-            opts = c.get_options(default_lib, block)
-            if not opts:
-                opts = ["None"]
+            opts = c.get_options(default_lib, block, include_none=True)
             inputs["required"][block] = (opts,)
         
-        inputs["optional"] = {
-            "custom": ("STRING", {"multiline": True, "default": ""}),
-        }
+        inputs["optional"] = {"custom": ("STRING", {"multiline": True, "default": ""})}
         
         return inputs
     
@@ -61,9 +52,12 @@ class PromptNode:
 
 class NegativeNode:
     NEGS = {
-        "q": "blurry, low quality, jpeg artifacts, watermark",
-        "a": "deformed face, bad proportions, extra limbs",
-        "s": "cartoon, 3d render, artificial",
+        "q": "blurry, low quality, jpeg artifacts, watermark, signature",
+        "a": "deformed face, asymmetrical eyes, bad proportions, extra limbs, merged fingers",
+        "s": "cartoon, anime, 3d render, illustration, artificial",
+        "l": "harsh shadows, overexposed, underexposed, bad lighting",
+        "c": "multiple people, cluttered background, busy composition",
+        "t": "duplicate, pixelated, grainy noise, compression artifacts"
     }
     
     @classmethod
@@ -73,10 +67,11 @@ class NegativeNode:
                 "quality": ("BOOLEAN", {"default": True}),
                 "anatomy": ("BOOLEAN", {"default": True}),
                 "style": ("BOOLEAN", {"default": True}),
+                "lighting": ("BOOLEAN", {"default": False}),
+                "context": ("BOOLEAN", {"default": False}),
+                "texture": ("BOOLEAN", {"default": True}),
             },
-            "optional": {
-                "custom": ("STRING", {"multiline": True, "default": ""}),
-            }
+            "optional": {"custom": ("STRING", {"multiline": True, "default": ""})}
         }
     
     RETURN_TYPES = ("STRING",)
@@ -84,26 +79,18 @@ class NegativeNode:
     FUNCTION = "run"
     CATEGORY = "Modular Prompts"
     
-    def run(self, quality, anatomy, style, custom=""):
+    def run(self, quality, anatomy, style, lighting, context, texture, custom=""):
         parts = []
-        if quality:
-            parts.append(self.NEGS["q"])
-        if anatomy:
-            parts.append(self.NEGS["a"])
-        if style:
-            parts.append(self.NEGS["s"])
-        if custom.strip():
-            parts.append(custom.strip())
+        if quality: parts.append(self.NEGS["q"])
+        if anatomy: parts.append(self.NEGS["a"])
+        if style: parts.append(self.NEGS["s"])
+        if lighting: parts.append(self.NEGS["l"])
+        if context: parts.append(self.NEGS["c"])
+        if texture: parts.append(self.NEGS["t"])
+        if custom.strip(): parts.append(custom.strip())
         
         return (", ".join(parts),)
 
 
-NODE_CLASS_MAPPINGS = {
-    "PromptNode": PromptNode,
-    "NegativeNode": NegativeNode,
-}
-
-NODE_DISPLAY_NAME_MAPPINGS = {
-    "PromptNode": "Prompt Composer",
-    "NegativeNode": "Negative Prompt",
-}
+NODE_CLASS_MAPPINGS = {"PromptNode": PromptNode, "NegativeNode": NegativeNode}
+NODE_DISPLAY_NAME_MAPPINGS = {"PromptNode": "Prompt Composer", "NegativeNode": "Negative Prompt"}

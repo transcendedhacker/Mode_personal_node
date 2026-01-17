@@ -6,6 +6,7 @@ class Composer:
     def __init__(self, schema_path, lib_path):
         self.schema = self._load(schema_path)
         self.libs = self._load_libs(lib_path)
+        self.cache = {}
     
     def _load(self, path):
         with open(path, 'r') as f:
@@ -19,13 +20,26 @@ class Composer:
         return libs
     
     def get_lib_names(self):
-        return list(self.libs.keys())
+        return sorted(list(self.libs.keys()))
     
-    def get_options(self, lib, block):
+    def get_options(self, lib, block, include_none=True):
+        key = f"{lib}:{block}"
+        if key in self.cache:
+            return self.cache[key]
+        
         if lib not in self.libs:
-            return []
+            opts = ["None"] if include_none else []
+            self.cache[key] = opts
+            return opts
+        
         blocks = self.libs[lib].get("blocks", {})
-        return list(blocks.get(block, {}).keys())
+        opts = sorted(list(blocks.get(block, {}).keys()))
+        
+        if include_none:
+            opts = ["None"] + opts
+        
+        self.cache[key] = opts
+        return opts
     
     def _weight(self, text, w, model):
         cfg = self.schema["models"].get(model, {})
@@ -48,7 +62,7 @@ class Composer:
         
         for i, block in enumerate(order):
             sel = selections.get(block)
-            if not sel:
+            if not sel or sel == "None":
                 continue
             
             text = blocks.get(block, {}).get(sel, "")

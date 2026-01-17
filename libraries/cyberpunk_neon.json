@@ -1,0 +1,71 @@
+{
+  "meta": {
+    "name": "cyberpunk_neon",
+    "version": "1.0"
+  },
+  
+  "blocks": {
+    "subject": {
+      "Woman": "A woman",
+      "Netrunner": "A netrunner woman",
+      "Street Samurai": "A street samurai woman"
+    },
+    
+    "hair": {
+      "Neon Pink": "with neon pink hair",
+      "Electric Blue": "with electric blue hair",
+      "Holographic": "with holographic shifting hair",
+      "Chrome Silver": "with chrome silver hair",
+      "Acid Green": "with acid green hair"
+    },
+    
+    "hairstyle": {
+      "Undercut Mohawk": "shaved sides with tall mohawk",
+      "Asymmetric Bob": "sharp asymmetric bob cut",
+      "Long Straight": "long straight hair with LED strips",
+      "Two Buns": "two high buns with neon streaks"
+    },
+    
+    "outfit": {
+      "Tech Jacket": "wearing synthetic leather jacket with LED strips and smart fabric pants",
+      "Bodysuit": "wearing form-fitting bodysuit with fiber optics and reflective materials",
+      "Street Punk": "wearing repurposed tech gear with neon highlights and DIY cybernetics",
+      "Netrunner Suit": "wearing streamlined data-jack suit with neural interfaces"
+    },
+    
+    "pose": {
+      "Tech Confidence": "cool calculated stance, leaning against surface",
+      "Hacker Focus": "intense concentration, hands mid-gesture",
+      "Street Survivor": "wary defensive stance, scanning surroundings",
+      "Cyber Swagger": "confident lean with digital edge"
+    },
+    
+    "mood": {
+      "Neon Rebellion": "cyberpunk nightlife, neon rebellion",
+      "Digital Trance": "netrunning state, virtual connection",
+      "Urban Tension": "dystopian tension, city survival",
+      "Tech Noir": "cinematic tech noir, mysterious edge"
+    },
+    
+    "angle": {
+      "Eye-Level": "eye-level shot",
+      "Low Angle": "low angle emphasizing power",
+      "Dutch Angle": "dutch angle for tension",
+      "Close-Up": "close-up on face and tech"
+    },
+    
+    "atmosphere": {
+      "Neon Rain": "vibrant neon reflections in rain, pink and blue glow",
+      "Holographic Haze": "soft holographic projections with digital artifacts",
+      "Purple Smog": "thick purple-tinted smog with neon cutting through",
+      "Data Stream": "blue-green digital light with streaming data"
+    },
+    
+    "technical": {
+      "50mm Neon": "50mm lens, neon bokeh",
+      "35mm Urban": "35mm lens, neon light pollution",
+      "SDXL Cyber": "photorealistic sci-fi, detailed neon",
+      "FLUX Cyber": "raw photo, cyberpunk aesthetic, neon photography"
+    }
+  }
+}

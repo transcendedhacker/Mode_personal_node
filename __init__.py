@@ -1,79 +1,69 @@
-"""
-ComfyUI Node - Minimal interface to composition engine
-"""
 import os
 import sys
 
 node_path = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, node_path)
 
-from engine.composer import PromptComposer
+from engine.composer import Composer
 
-SCHEMA_PATH = os.path.join(node_path, "schema", "connector.json")
-LIBRARIES_PATH = os.path.join(node_path, "libraries")
+SCHEMA = os.path.join(node_path, "schema", "connector.json")
+LIBS = os.path.join(node_path, "libraries")
 
-class ModularPromptNode:
-    
+class PromptNode:
     def __init__(self):
-        self.composer = PromptComposer(SCHEMA_PATH, LIBRARIES_PATH)
+        self.c = Composer(SCHEMA, LIBS)
     
     @classmethod
     def INPUT_TYPES(cls):
-        instance = cls()
-        composer = instance.composer
+        inst = cls()
+        c = inst.c
         
-        library_names = composer.get_library_names()
-        if not library_names:
-            library_names = ["default"]
+        libs = c.get_lib_names()
+        if not libs:
+            libs = ["default"]
         
-        default_library = library_names[0]
-        
-        block_order = composer.schema["structure"]["block_order"]
+        default_lib = libs[0]
+        order = c.schema["assembly"]["order"]
         
         inputs = {
             "required": {
-                "library": (library_names,),
-                "model_profile": (["sdxl", "flux"], {"default": "sdxl"}),
+                "library": (libs,),
+                "model": (["sdxl", "flux"], {"default": "sdxl"}),
             }
         }
         
-        for block_name in block_order:
-            options = composer.get_block_options(default_library, block_name)
-            if not options:
-                options = ["None"]
-            inputs["required"][block_name] = (options,)
+        for block in order:
+            opts = c.get_options(default_lib, block)
+            if not opts:
+                opts = ["None"]
+            inputs["required"][block] = (opts,)
         
         inputs["optional"] = {
-            "custom_addition": ("STRING", {"multiline": True, "default": ""}),
+            "custom": ("STRING", {"multiline": True, "default": ""}),
         }
         
         return inputs
     
     RETURN_TYPES = ("STRING",)
     RETURN_NAMES = ("prompt",)
-    FUNCTION = "compose_prompt"
+    FUNCTION = "run"
     CATEGORY = "Modular Prompts"
     
-    def compose_prompt(self, library, model_profile, custom_addition="", **kwargs):
-        """
-        Compose final prompt using engine
-        """
-        selections = {k: v for k, v in kwargs.items() if v != "None"}
+    def run(self, library, model, custom="", **kwargs):
+        sels = {k: v for k, v in kwargs.items() if v != "None"}
+        prompt = self.c.compose(library, sels, model)
         
-        prompt = self.composer.compose(library, selections, model_profile)
-        
-        if custom_addition.strip():
-            prompt += ", BREAK, " + custom_addition.strip()
+        if custom.strip():
+            prompt += ", BREAK, " + custom.strip()
         
         return (prompt,)
 
 
-class ModularNegativeNode:
-    
-    NEGATIVES = {
-        "quality": "blurry, out of focus, low quality, jpeg artifacts, watermark, signature",
-        "anatomy": "deformed face, asymmetrical eyes, bad proportions, extra limbs, merged fingers",
-        "style": "cartoon, anime, 3d render, illustration, painting, artificial",
+class NegativeNode:
+    NEGS = {
+        "q": "blurry, low quality, jpeg artifacts, watermark",
+        "a": "deformed face, bad proportions, extra limbs",
+        "s": "cartoon, 3d render, artificial",
     }
     
     @classmethod
@@ -91,17 +81,17 @@ class ModularNegativeNode:
     
     RETURN_TYPES = ("STRING",)
     RETURN_NAMES = ("negative",)
-    FUNCTION = "compose_negative"
+    FUNCTION = "run"
     CATEGORY = "Modular Prompts"
     
-    def compose_negative(self, quality, anatomy, style, custom=""):
+    def run(self, quality, anatomy, style, custom=""):
         parts = []
         if quality:
-            parts.append(self.NEGATIVES["quality"])
+            parts.append(self.NEGS["q"])
         if anatomy:
-            parts.append(self.NEGATIVES["anatomy"])
+            parts.append(self.NEGS["a"])
         if style:
-            parts.append(self.NEGATIVES["style"])
+            parts.append(self.NEGS["s"])
         if custom.strip():
             parts.append(custom.strip())
         
@@ -109,11 +99,11 @@ class ModularNegativeNode:
 
 
 NODE_CLASS_MAPPINGS = {
-    "ModularPromptNode": ModularPromptNode,
-    "ModularNegativeNode": ModularNegativeNode,
+    "PromptNode": PromptNode,
+    "NegativeNode": NegativeNode,
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "ModularPromptNode": "Modular Prompt Composer",
-    "ModularNegativeNode": "Modular Negative Prompt",
+    "PromptNode": "Prompt Composer",
+    "NegativeNode": "Negative Prompt",
 }

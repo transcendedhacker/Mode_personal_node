@@ -1,28 +1,15 @@
-# Python
 __pycache__/
-*.py[cod]
-*$py.class
-*.so
+*.pyc
+*.pyo
+*.pyd
 .Python
+*.so
 
-# ComfyUI
-*.safetensors
-*.ckpt
-*.pt
-*.pth
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
-# OS
 .DS_Store
 Thumbs.db
+.vscode/
+.idea/
 
-# Temp
-temp/
-tmp/
+*.log
 *.tmp
+temp/

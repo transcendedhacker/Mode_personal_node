@@ -1,8 +1,8 @@
-# test output examples
+# Output Examples
 
-## example 1: minimal selections
+## Example 1: Minimal Selections
 
-**selections:**
+**Selections:**
 - library: comprehensive_portrait
 - model: sdxl
 - subject: Woman
@@ -10,19 +10,19 @@
 - outfit: Silk Slip Dress
 - all others: None
 
-**output:**
+**Output:**
 ```
 A woman with platinum blonde hair, wearing red silk slip dress with spaghetti straps, 
 photorealistic, sharp focus, highly detailed, 8k
 ```
 
-clean. no bloat.
+Clean composition. No unnecessary elements.
 
 ---
 
-## example 2: full composition
+## Example 2: Full Composition
 
-**selections:**
+**Selections:**
 - subject: Young Woman
 - age: 23-27
 - hair_color: Auburn
@@ -41,7 +41,7 @@ clean. no bloat.
 - filter: Cyberpunk Neon
 - technical: 85mm Portrait
 
-**output:**
+**Output:**
 ```
 A young woman 23-27 years old with auburn hair long silky straight hair cascading down the back 
 with large decorative silk bow, wearing black velvet mini dress with long sleeves with glossy finish, 
@@ -52,13 +52,13 @@ on rain-soaked city street during neon-lit midnight, BREAK,
 BREAK, cyberpunk neon with crushed blacks, shot on 85mm lens, f/1.8, compressed perspective
 ```
 
-full composition. weighted. BREAK placement. clean structure.
+Full composition. Weighted blocks. BREAK placement. Structured assembly.
 
 ---
 
-## example 3: skip categories strategically
+## Example 3: Strategic Block Skipping
 
-**selections:**
+**Selections:**
 - subject: Woman
 - age: None
 - hair_color: Silver Grey
@@ -77,7 +77,7 @@ full composition. weighted. BREAK placement. clean structure.
 - filter: None
 - technical: SDXL Cinematic
 
-**output:**
+**Output:**
 ```
 A woman with silver-grey hair short tousled curls, wearing black leather motorcycle jacket over band t-shirt, 
 (standing with hands on hips, elbows forward:1.2), (gritty realism, street truth:1.2), 
@@ -86,42 +86,43 @@ in industrial loft space, BREAK, (cold metallic grey lighting with crystalline r
 cinematic photography, professional lighting, sharp focus
 ```
 
-"None" selections = skipped cleanly. no blank text, just omitted.
+"None" selections cleanly omitted. No blank text, just compositionally complete prompt.
 
 ---
 
-## composition logic
+## Composition Logic
 
-1. collect all non-"None" selections
-2. lookup text from library
-3. apply weights per schema
-4. join with separator
-5. insert BREAK at positions
-6. done
+1. Collect all non-"None" selections
+2. Lookup text from library
+3. Apply weights per schema
+4. Join with separator
+5. Insert BREAK at specified positions
+6. Return assembled prompt
 
-atomic → weighted → composed.
+Atomic elements → weighted → composed → output.
 
 ---
 
-## scaling test
+## Scaling Test Results
 
-with 100 options per category:
+With 100 options per category:
 
 17 categories × 100 options = 1700 total selections
 
-still works. alphabetical makes it scannable.
+System remains responsive. Alphabetical sorting maintains navigation efficiency.
 
-with 1000 options total across all categories:
+With 1000 options total across all categories:
 
-still fast. just more dropdown scrolling.
+Composition speed unchanged. Dropdown scrolling is only UX consideration.
 
-alphabetical + ctrl+f in dropdown = easy navigation.
+Alphabetical organization + ctrl+f in dropdown = efficient navigation.
 
 ---
 
-## performance
+## Performance Metrics
 
-v1 (full sentences): 300s gen time
-v2 (atomic clean): <100s gen time
+v1 (full sentences): ~300s generation time
+v2 (atomic composition): <100s generation time
 
-clean prompts = faster encoding = better results.
+Clean, structured prompts encode faster and produce more consistent results.
+Reduced token overhead improves model interpretation.

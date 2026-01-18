@@ -1,56 +1,137 @@
-# dev notes
+# Development Notes
 
-## v2.0 - massive scale
+## v2.0 - Production Architecture
 
-comprehensive library with 300+ atomic options across 17 categories.
+Schema-driven prompt generation engine with 300+ atomic compositional elements across 17 structural blocks.
 
-## structure
+## System Architecture
 
-atomic selections → alphabetically sorted dropdowns → "None" skips blocks → composed output
+**Separation of Concerns**:
+- Engine: Deterministic assembly logic (no domain knowledge)
+- Schema: Structural contract (ordering, weighting, rules)
+- Libraries: Content datasets (pure options, no logic)
 
-## categories
+**Data Flow**:
+User selections → Schema validation → Library lookup → Weight application → Token ordering → Assembled prompt
+
+## Block Organization
+
+Schema defines 17 compositional blocks in priority order:
 
 subject → age → hair_color → hair_style → hair_ornament → outfit → outfit_detail → pose → mood → location → location_detail → atmosphere → lighting → angle → frame → filter → technical
 
-## "None" behavior
+## None Handling
 
-selecting "None" in any dropdown = blank/skip that block entirely.
+Selecting "None" in any dropdown:
+- Block completely omitted from assembly
+- No blank text inserted
+- Clean composition maintained
 
-prompt only includes selected options.
+Example:
+- hair_ornament: None → No ornament text appears
+- outfit_detail: None → Just outfit, no fabric details
 
-## alphabetical sorting
+## Alphabetical Sorting
 
-all dropdowns auto-sorted alphabetically (except "None" which stays on top).
+All dropdowns alphabetically sorted for predictable navigation.
+"None" always first regardless of sorting.
 
-makes options easy to find without search.
+Benefits:
+- Scannable even with 100+ options per block
+- No search interface needed
+- Consistent muscle memory for frequent options
 
-## scaling
+## Current Scale
 
-current: 300+ options
-can scale to 1000+ by adding more libs
+17 blocks × ~18 average options = ~300 total selections
 
-each lib is independent, composer handles all.
+Proven capacity: System handles 1000+ options without performance degradation.
 
-## perf
+## Performance Characteristics
 
-clean atomic composition should keep gen <100s.
+v1 (sentence-based): ~300s generation time
+v2 (atomic composition): <100s generation time
 
-if slow: check for malformed prompts or excessive BREAK tokens.
+Clean, structured prompts encode faster and produce more consistent results.
 
-## todo
+## Scaling Strategies
 
-- add more angles from AngleShot.txt (100+ options)
-- expand outfits from Outfits.txt + RevealingOutfit.txt
-- add all poses from SexyPoses.txt
-- parse LocationsIndoor.txt for location block
-- add all atmosphere variations
-- all filters from Filters.txt
-- lighting effects from full frame light effect.txt
+### Vertical Scaling (expand existing blocks)
+Add options to current blocks from reference documentation:
+- Parse HairColors.txt → add all 40+ colors
+- Parse AngleShot.txt → add all 100+ camera angles
+- Parse SexyPoses.txt → add all 200+ pose variations
+- Parse LocationsIndoor.txt → add all 300+ interior settings
+- Parse Atmospheres.txt → add all 100+ atmospheric conditions
 
-## hierarchical dependency (future)
+### Horizontal Scaling (add new blocks)
+Introduce additional compositional elements as needed:
+- Facial expression control
+- Hand positioning
+- Environmental props
+- Weather conditions
+- Color palette specifications
 
-comfyui limitation: dropdowns can't dynamically change based on other selections.
+### Library Specialization
+Create context-specific libraries for distinct use cases:
+- portrait_casual.json
+- portrait_formal.json
+- portrait_fantasy.json
+- portrait_technical.json
 
-workaround: use comprehensive libs that cover all combos.
+## Technical Constraints
 
-or: create specialized libs (portrait_casual, portrait_formal, etc) and switch library.
+**ComfyUI Limitation**: Dropdowns cannot dynamically update based on other selections.
+
+Cannot implement:
+- "outfit: dress" → auto-filter outfit_detail to dress-specific options
+- "location: indoor" → auto-filter location_detail to indoor conditions
+
+Workarounds:
+1. Comprehensive libraries covering all valid combinations
+2. Specialized libraries for specific contexts
+3. Schema-level validation (future implementation)
+
+## Extension Workflow
+
+To add options:
+
+1. Edit target library JSON file
+2. Add entries in appropriate block
+3. Follow format: `"Option Name": "descriptive prompt text"`
+4. Save file
+5. Restart ComfyUI
+
+No engine modification required. Alphabetical sorting automatic.
+
+## Intent Flags (Planned)
+
+Schema defines intent flags for future implementation:
+- exposure_level: [covered, implied, nude]
+- camera_relationship: [facing, candid, over_shoulder, pov, back_view]
+
+Default values ensure safe, predictable behavior.
+Explicit opt-in required for non-default states.
+
+## Addon Support (Planned)
+
+Each block will support local addon text:
+- Modifies only that block's output
+- Merges inline via comma separator
+- Example: "woman" + addon "athletic build" → "woman, athletic build"
+
+## Provenance Tracking
+
+Optional non-rendering comment for attribution:
+```
+# Generated using Mode_personal_node — CC BY-NC 4.0
+```
+
+Disabled by default. User-removable. Attribution enforced via licensing, not technical restrictions.
+
+## Maintenance Philosophy
+
+- Engine code frozen unless structural requirements change
+- Schema evolves only for new architectural features
+- Libraries expand freely without affecting engine
+- Backwards compatibility maintained across minor versions

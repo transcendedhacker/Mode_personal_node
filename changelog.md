@@ -1,128 +1,108 @@
-# v2.0 - massive scale implementation
+# Changelog
 
-## what changed
+## v2.0.0 - Schema-Driven Architecture
 
-### before (v1)
+### Structural Changes
+
+**Before (v1.x)**:
 - 5-10 options per category
-- full sentences in dropdowns
-- 80 total selections
+- Full sentences in dropdown options
+- Approximately 80 total selections available
+- Tightly coupled engine and content
 
-### after (v2)
-- 300+ atomic options
-- 17 categories
-- alphabetically sorted
-- "None" skips blocks
+**After (v2.0)**:
+- 300+ atomic options across 17 compositional blocks
+- Schema-driven architecture with strict separation of concerns
+- Alphabetically sorted dropdown navigation
+- "None" option for selective block skipping
+- Intent flag preparation for future explicit control
 
-## structure
+### Architecture
 
 ```
-comprehensive_portrait.json:
-- subject (5)
-- age (7)  
-- hair_color (27)
-- hair_style (22)
-- hair_ornament (14)
-- outfit (29)
-- outfit_detail (10)
-- pose (20)
-- mood (15)
-- location (15)
-- location_detail (10)
-- atmosphere (15)
-- lighting (14)
-- angle (18)
-- frame (10)
-- filter (15)
-- technical (12)
-
-total: 258 options in one library
+Mode_personal_node/
+├── engine/composer.py      → Deterministic assembly logic
+├── schema/connector.json   → Structural contract and rules
+└── libraries/*.json         → Content-only option datasets
 ```
 
-## features
+### Library Structure
 
-### alphabetical sorting
-all dropdowns auto-sorted A-Z.
-"None" always first.
+Example library block counts (comprehensive_portrait.json):
+- subject: 5 options
+- age: 7 options
+- hair_color: 27 options
+- hair_style: 22 options
+- hair_ornament: 14 options
+- outfit: 29 options
+- outfit_detail: 10 options
+- pose: 20 options
+- mood: 15 options
+- location: 15 options
+- location_detail: 10 options
+- atmosphere: 15 options
+- lighting: 14 options
+- angle: 18 options
+- frame: 10 options
+- filter: 15 options
+- technical: 12 options
 
-### "None" behavior
-selecting "None" = skip block entirely.
-no blank text, just omitted from composition.
+Total: 258 options in base library
 
-### clean composition
-atomic parts → weighted → BREAK placement → final prompt.
+### Features
 
-example:
-```
-User selects:
+**Alphabetical Sorting**: All dropdown options auto-sorted A-Z for predictable navigation. "None" always appears first.
+
+**None Behavior**: Selecting "None" completely omits that block from composition. No blank text, clean assembly.
+
+**Atomic Composition**: Each option represents a single compositional element. Multiple selections compose into structured prompts.
+
+**Scalability**: System architecture supports thousands of options across unlimited libraries without engine modification.
+
+### Example Composition
+
+**Input Selections**:
 - subject: "Woman"
 - age: "23-27"
 - hair_color: "Platinum Blonde"
 - outfit: "Silk Slip Dress"
 - pose: "Over Shoulder"
+- (other blocks: None)
 
-Output:
-"A woman 23-27 years old with platinum blonde hair, wearing red silk slip dress, 
-(turning back to camera, looking over shoulder:1.2), ..."
+**Output**:
+```
+A woman 23-27 years old with platinum blonde hair, wearing red silk slip dress with spaghetti straps, (turning back to camera, looking over shoulder:1.2), photorealistic, sharp focus, highly detailed, 8k
 ```
 
-### scalability
-current: 258 options
-can add 1000s more by:
-- expanding existing blocks
-- adding new categories
-- creating specialized libs
+### Scaling Strategy
 
-## how to scale
+**Current**: 258 options in base library
+**Capacity**: System handles 1000+ options per library, unlimited libraries
 
-### parse reference docs
+**Multi-Library Approach**: For specialized contexts, create focused libraries:
+- comprehensive_portrait.json (general purpose)
+- cyberpunk_neon.json (genre-specific)
+- Additional libraries as needed
 
-you provided:
-- HairColors.txt → add all 40 colors
-- AngleShot.txt → add all 100+ angles
-- Outfits.txt → add all options
-- SexyPoses.txt → add all 200+ poses
-- LocationsIndoor.txt → add all 300+ locations
+Switch library dropdown to change entire option context.
 
-just edit json, add entries, restart.
+### Technical Details
 
-### alphabetical advantage
+**ComfyUI Limitation**: Dropdowns cannot dynamically update based on other selections. Workaround is comprehensive libraries covering all combinations, or context-specific library switching.
 
-with 100 options in dropdown:
-- still easy to scan A-Z
-- no search needed
-- predictable location
+**Weighting**: Model-specific weight multipliers applied to atmospheric and technical blocks (configurable in schema).
 
-### multi-library strategy
+**BREAK Tokens**: Inserted at schema-defined positions for token priority control.
 
-if one lib hits 1000+ options, split by context:
-- portrait_casual
-- portrait_formal  
-- portrait_alternative
-- portrait_fantasy
+**Caching**: Option lists cached per library-block pair for performance.
 
-switch library = switch context.
+### Future Extensions
 
-## comfyui limitation
+Content expansion planned from reference documentation:
+- Hair colors: 27 → 40+ options
+- Camera angles: 18 → 100+ options
+- Poses: 20 → 200+ options
+- Locations: 15 → 300+ options
+- Atmospheric conditions: 15 → 100+ options
 
-dropdowns can't dynamically update based on other selections.
-
-so "outfit: dress" can't auto-filter "outfit_detail" to dress-specific options.
-
-workaround:
-- comprehensive libs with all combos
-- or specialized libs for contexts
-
-
-expand from your reference docs:
-1. add all hair colors (27 → 40)
-2. add all angles (18 → 100+)
-3. add all poses (20 → 200+)
-4. add all locations (15 → 300+)
-5. add all atmospheres (15 → 100+)
-
-system handles any scale.
-
-alphabetical + "None" = clean navigation.
-
-atomic composition = fast clean prompts.
-
+All expansions require only library file edits, never engine modifications.

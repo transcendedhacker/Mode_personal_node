@@ -1,4 +1,7 @@
 {
+  "schema_version": "2.0.0",
+  "description": "Schema contract for SDXL/Flux prompt generation engine",
+  
   "assembly": {
     "order": [
       "subject",
@@ -21,6 +24,126 @@
     ],
     "separator": ", ",
     "break_after": [8, 12, 15]
+  },
+  
+  "blocks": {
+    "subject": {
+      "description": "Primary subject definition",
+      "addon_enabled": true,
+      "addon_merge_mode": "inline_append",
+      "fallback": "person"
+    },
+    "age": {
+      "description": "Age specification",
+      "addon_enabled": true,
+      "addon_merge_mode": "inline_append",
+      "fallback": ""
+    },
+    "hair_color": {
+      "description": "Hair color characteristics",
+      "addon_enabled": true,
+      "addon_merge_mode": "inline_append",
+      "fallback": ""
+    },
+    "hair_style": {
+      "description": "Hair styling and structure",
+      "addon_enabled": true,
+      "addon_merge_mode": "inline_append",
+      "fallback": ""
+    },
+    "hair_ornament": {
+      "description": "Hair accessories and adornments",
+      "addon_enabled": true,
+      "addon_merge_mode": "inline_append",
+      "fallback": ""
+    },
+    "outfit": {
+      "description": "Clothing and garments",
+      "addon_enabled": true,
+      "addon_merge_mode": "inline_append",
+      "fallback": "clothed"
+    },
+    "outfit_detail": {
+      "description": "Fabric and garment characteristics",
+      "addon_enabled": true,
+      "addon_merge_mode": "inline_append",
+      "fallback": ""
+    },
+    "pose": {
+      "description": "Body pose and action state",
+      "addon_enabled": true,
+      "addon_merge_mode": "inline_append",
+      "fallback": "standing"
+    },
+    "mood": {
+      "description": "Atmospheric mood and emotional tone",
+      "addon_enabled": true,
+      "addon_merge_mode": "inline_append",
+      "fallback": ""
+    },
+    "location": {
+      "description": "Physical setting and environment",
+      "addon_enabled": true,
+      "addon_merge_mode": "inline_append",
+      "fallback": "neutral background"
+    },
+    "location_detail": {
+      "description": "Environmental timing and conditions",
+      "addon_enabled": true,
+      "addon_merge_mode": "inline_append",
+      "fallback": ""
+    },
+    "atmosphere": {
+      "description": "Atmospheric quality and environmental effects",
+      "addon_enabled": true,
+      "addon_merge_mode": "inline_append",
+      "fallback": ""
+    },
+    "lighting": {
+      "description": "Light source and quality",
+      "addon_enabled": true,
+      "addon_merge_mode": "inline_append",
+      "fallback": "natural lighting"
+    },
+    "angle": {
+      "description": "Camera angle and perspective",
+      "addon_enabled": true,
+      "addon_merge_mode": "inline_append",
+      "fallback": "eye-level shot"
+    },
+    "frame": {
+      "description": "Framing and compositional structure",
+      "addon_enabled": true,
+      "addon_merge_mode": "inline_append",
+      "fallback": ""
+    },
+    "filter": {
+      "description": "Color grading and stylistic processing",
+      "addon_enabled": true,
+      "addon_merge_mode": "inline_append",
+      "fallback": ""
+    },
+    "technical": {
+      "description": "Camera and render quality parameters",
+      "addon_enabled": true,
+      "addon_merge_mode": "inline_append",
+      "fallback": "photorealistic, detailed"
+    }
+  },
+  
+  "intent_flags": {
+    "exposure_level": {
+      "description": "Explicit clothing and exposure state",
+      "values": ["covered", "implied", "nude"],
+      "default": "covered",
+      "override_behavior": "explicit_only"
+    },
+    "camera_relationship": {
+      "description": "Subject awareness and camera orientation",
+      "values": ["facing", "candid", "over_shoulder", "pov", "back_view"],
+      "default": "facing",
+      "override_behavior": "explicit_only"
+    }
   },
   
   "weights": {
@@ -52,5 +175,24 @@
       "weights": true,
       "multiplier": 0.85
     }
+  },
+  
+  "addon_merge_rules": {
+    "inline_append": {
+      "description": "Addon text appended to selected option with comma separator",
+      "example": "selected: 'woman' + addon: 'athletic build' → 'woman, athletic build'"
+    }
+  },
+  
+  "validation_rules": {
+    "block_names_must_match_ordering": true,
+    "library_blocks_must_exist_in_schema": true,
+    "fallback_must_be_string_or_empty": true,
+    "intent_flags_must_declare_default": true
+  },
+  
+  "provenance": {
+    "enabled": false,
+    "comment": "# Generated using Mode_personal_node — CC BY-NC 4.0"
   }
 }

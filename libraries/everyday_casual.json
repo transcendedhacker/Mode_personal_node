@@ -1,0 +1,296 @@
+{
+  "meta": {
+    "name": "everyday_casual",
+    "version": "1.0",
+    "description": "Casual daily life scenarios and natural moments"
+  },
+  
+  "blocks": {
+    "subject": {
+      "Woman": "A woman",
+      "Young Woman": "A young woman",
+      "Girl": "A girl"
+    },
+    
+    "age": {
+      "18-22": "18-22 years old",
+      "23-27": "23-27 years old",
+      "28-35": "28-35 years old",
+      "35-45": "35-45 years old"
+    },
+    
+    "hair_color": {
+      "Blonde": "with blonde hair",
+      "Brown": "with brown hair",
+      "Black": "with black hair",
+      "Red": "with red hair",
+      "Dyed": "with dyed hair"
+    },
+    
+    "hair_style": {
+      "Ponytail": "in a ponytail",
+      "Messy Bun": "in a messy bun",
+      "Down Natural": "worn down naturally",
+      "Half Up": "half-up casual style",
+      "Bob Cut": "in a bob cut",
+      "Loose": "loose and casual"
+    },
+    
+    "hair_ornament": {
+      "Hair Tie": "with simple hair tie",
+      "Headband": "wearing a headband",
+      "Cap": "wearing a baseball cap",
+      "Sunglasses On Head": "with sunglasses pushed up on head",
+      "Scrunchie": "with scrunchie"
+    },
+    
+    "outfit": {
+      "Jeans T-Shirt": "wearing jeans and a t-shirt",
+      "Hoodie Leggings": "wearing a hoodie and leggings",
+      "Casual Dress": "wearing a casual sundress",
+      "Workout Clothes": "wearing workout clothes",
+      "Sweater Jeans": "wearing a sweater and jeans",
+      "Tank Top Shorts": "wearing a tank top and shorts",
+      "Blouse Pants": "wearing a blouse and casual pants",
+      "Cardigan Jeans": "wearing a cardigan over jeans",
+      "Comfy Clothes": "wearing comfortable loungewear",
+      "Business Casual": "wearing business casual attire",
+      "Yoga Pants Top": "wearing yoga pants and a fitted top",
+      "Flannel Jeans": "wearing a flannel shirt and jeans",
+      "Maxi Dress": "wearing a casual maxi dress",
+      "Romper": "wearing a romper",
+      "Jumpsuit": "wearing a casual jumpsuit"
+    },
+    
+    "outfit_detail": {
+      "Sneakers": "with sneakers",
+      "Sandals": "with sandals",
+      "Flats": "with flats",
+      "Boots": "with ankle boots",
+      "Backpack": "carrying a backpack",
+      "Purse": "carrying a purse",
+      "Tote Bag": "carrying a tote bag",
+      "Shopping Bags": "holding shopping bags",
+      "Coffee Cup": "holding a coffee cup",
+      "Phone": "holding her phone",
+      "Water Bottle": "carrying a water bottle",
+      "Umbrella": "carrying an umbrella"
+    },
+    
+    "pose": {
+      "Walking Naturally": "walking naturally",
+      "Standing Casual": "standing casually",
+      "Sitting Relaxed": "sitting in a relaxed posture",
+      "Leaning Against Wall": "leaning against a wall",
+      "Looking At Phone": "looking down at phone",
+      "Scrolling Phone": "scrolling on her phone",
+      "Tying Shoes": "bending down to tie shoes",
+      "Reaching For Something": "reaching up to grab something from shelf",
+      "Browsing Items": "browsing through items on display",
+      "Checking Watch": "glancing at watch or phone for time",
+      "Adjusting Hair": "casually adjusting hair",
+      "Putting On Jacket": "putting on or taking off jacket",
+      "Drinking Coffee": "drinking from coffee cup",
+      "Eating Casually": "eating food casually",
+      "Waiting In Line": "standing waiting in line",
+      "Crossing Arms": "standing with arms crossed",
+      "Hand In Pocket": "standing with one hand in pocket",
+      "Sitting Crossed Legs": "sitting with legs crossed",
+      "Sitting On Bench": "sitting on bench or chair naturally",
+      "Leaning On Counter": "leaning forward on counter or table",
+      "Stretching": "stretching arms or back",
+      "Yawning": "yawning or covering mouth",
+      "Laughing Naturally": "laughing at something",
+      "Talking On Phone": "holding phone to ear talking",
+      "Taking Selfie": "holding phone up taking selfie",
+      "Putting On Sunglasses": "putting on or adjusting sunglasses",
+      "Opening Door": "opening or holding door",
+      "Carrying Groceries": "carrying grocery bags",
+      "Pushing Shopping Cart": "pushing a shopping cart",
+      "Looking In Mirror": "checking appearance in mirror or window",
+      "Fixing Outfit": "adjusting shirt or straightening outfit",
+      "Wiping Face": "wiping face with hand or tissue",
+      "Rubbing Eyes": "rubbing tired eyes",
+      "Shielding Eyes": "shielding eyes from sun with hand",
+      "Pointing At Something": "pointing at something",
+      "Gesturing While Talking": "gesturing with hands while talking",
+      "Hugging Knees": "sitting hugging knees",
+      "Feet Up Relaxing": "sitting with feet propped up",
+      "Lying Down Casual": "lying down in relaxed position",
+      "Stretching On Ground": "stretching on floor or mat"
+    },
+    
+    "mood": {
+      "Relaxed": "relaxed casual mood",
+      "Happy": "happy cheerful mood",
+      "Tired": "tired after long day",
+      "Focused": "focused and concentrated",
+      "Bored": "bored waiting",
+      "Excited": "excited energetic mood",
+      "Calm": "calm peaceful mood",
+      "Rushed": "in a hurry rushing",
+      "Content": "content and satisfied",
+      "Casual": "casual everyday mood"
+    },
+    
+    "location": {
+      "Coffee Shop": "in a coffee shop",
+      "Grocery Store": "in a grocery store",
+      "Shopping Mall": "in a shopping mall",
+      "Park": "in a public park",
+      "Gym": "at the gym",
+      "Library": "in a library",
+      "Bookstore": "in a bookstore",
+      "Restaurant": "in a restaurant",
+      "Cafe": "in a cafe",
+      "Bus Stop": "at a bus stop",
+      "Train Station": "at a train station",
+      "Airport": "in an airport",
+      "Parking Lot": "in a parking lot",
+      "Street Sidewalk": "on a city sidewalk",
+      "Crosswalk": "at a crosswalk",
+      "Subway Platform": "on a subway platform",
+      "Office": "in an office",
+      "Waiting Room": "in a waiting room",
+      "Bathroom": "in a bathroom",
+      "Bedroom": "in a bedroom",
+      "Living Room": "in a living room",
+      "Kitchen": "in a kitchen",
+      "Laundry Room": "in a laundry room",
+      "Apartment Hallway": "in an apartment hallway",
+      "Elevator": "in an elevator",
+      "Stairwell": "in a stairwell",
+      "Hotel Room": "in a hotel room",
+      "Hotel Lobby": "in a hotel lobby",
+      "Spa": "at a spa",
+      "Salon": "at a hair salon",
+      "Clinic": "in a medical clinic",
+      "Pharmacy": "in a pharmacy",
+      "Bank": "in a bank",
+      "Post Office": "at a post office",
+      "Gas Station": "at a gas station",
+      "Car Interior": "inside a car",
+      "Movie Theater": "in a movie theater",
+      "Concert Venue": "at a concert venue",
+      "Museum": "in a museum",
+      "Art Gallery": "in an art gallery",
+      "Clothing Store": "in a clothing store",
+      "Dressing Room": "in a dressing room",
+      "Shoe Store": "in a shoe store",
+      "Electronics Store": "in an electronics store",
+      "Convenience Store": "in a convenience store",
+      "Pharmacy Aisle": "in a pharmacy aisle",
+      "Bakery": "in a bakery",
+      "Ice Cream Shop": "in an ice cream shop",
+      "Fast Food": "in a fast food restaurant",
+      "Food Court": "in a mall food court",
+      "Farmers Market": "at a farmers market",
+      "Beach": "at the beach",
+      "Pool": "at a swimming pool",
+      "Tennis Court": "on a tennis court",
+      "Yoga Studio": "in a yoga studio",
+      "Dance Studio": "in a dance studio",
+      "Playground": "at a playground",
+      "Dog Park": "at a dog park",
+      "Bike Path": "on a bike path",
+      "Hiking Trail": "on a hiking trail",
+      "Parking Garage": "in a parking garage",
+      "Laundromat": "in a laundromat",
+      "ATM": "at an ATM",
+      "Vending Machine Area": "by vending machines",
+      "School Hallway": "in a school hallway",
+      "Classroom": "in a classroom",
+      "Study Room": "in a study room",
+      "Campus Quad": "on a campus quad",
+      "Dorm Room": "in a dorm room"
+    },
+    
+    "location_detail": {
+      "Daytime": "during daytime",
+      "Morning": "in the morning",
+      "Afternoon": "in the afternoon",
+      "Evening": "in the evening",
+      "Night": "at night",
+      "Busy Hour": "during busy hours",
+      "Quiet Time": "during quiet hours",
+      "Crowded": "crowded with people",
+      "Empty": "mostly empty",
+      "Well Lit": "well-lit interior",
+      "Dim Lighting": "dimly lit",
+      "Natural Light": "with natural daylight"
+    },
+    
+    "atmosphere": {
+      "Bright Natural": "bright natural daylight",
+      "Soft Indoor": "soft indoor lighting",
+      "Warm Cozy": "warm cozy atmosphere",
+      "Cool Modern": "cool modern atmosphere",
+      "Busy Active": "busy active environment",
+      "Quiet Calm": "quiet calm environment",
+      "Fluorescent": "fluorescent overhead lighting",
+      "Natural Window": "natural light from windows",
+      "Street Light": "street lighting",
+      "Store Lighting": "bright store lighting"
+    },
+    
+    "lighting": {
+      "Natural Daylight": "natural daylight illumination",
+      "Overhead Indoor": "overhead indoor lighting",
+      "Window Light": "light from nearby window",
+      "Soft Ambient": "soft ambient lighting",
+      "Bright Even": "bright even lighting",
+      "Dim Mood": "dim atmospheric lighting",
+      "Fluorescent Cool": "cool fluorescent lighting",
+      "Warm Indoor": "warm indoor lighting",
+      "Mixed Light": "mixed natural and artificial light"
+    },
+    
+    "angle": {
+      "Eye-Level": "eye-level shot",
+      "Slightly Above": "shot from slightly above",
+      "Slightly Below": "shot from slightly below",
+      "Profile Side": "profile from side",
+      "Three-Quarter": "three-quarter angle",
+      "Candid Angle": "candid natural angle",
+      "Documentary": "documentary style angle",
+      "Phone Camera": "phone camera angle",
+      "Selfie Angle": "selfie angle",
+      "Security Cam": "security camera angle"
+    },
+    
+    "frame": {
+      "Medium Shot": "medium shot framing",
+      "Full Body": "full body in frame",
+      "Waist Up": "waist up framing",
+      "Close Portrait": "close portrait framing",
+      "Environmental": "environmental portrait with context",
+      "Tight Crop": "tight crop on subject",
+      "Loose Framing": "loose casual framing",
+      "Rule of Thirds": "rule of thirds composition",
+      "Centered": "centered composition"
+    },
+    
+    "filter": {
+      "Natural Color": "natural realistic colors",
+      "Slightly Warm": "slightly warm color tone",
+      "Slightly Cool": "slightly cool color tone",
+      "Vibrant": "vibrant saturated colors",
+      "Muted": "muted subtle colors",
+      "Film Look": "subtle film grain aesthetic",
+      "Clean Digital": "clean digital look",
+      "Soft Filter": "soft diffused filter"
+    },
+    
+    "technical": {
+      "Phone Camera": "shot on phone camera, natural look",
+      "35mm Casual": "shot on 35mm lens, casual photography",
+      "50mm Natural": "shot on 50mm lens, natural perspective",
+      "Documentary": "documentary photography style",
+      "Candid Photo": "candid photography aesthetic",
+      "Snapshot": "casual snapshot quality",
+      "DSLR Natural": "DSLR camera, natural photography",
+      "SDXL Realistic": "photorealistic, natural lighting, everyday moment",
+      "FLUX Candid": "raw photo, candid moment, realistic colors, natural scene"
+    }
+  }
+}
